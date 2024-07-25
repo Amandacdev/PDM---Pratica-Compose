@@ -12,6 +12,7 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
@@ -21,7 +22,81 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.compose_pratica.ui.theme.Compose_praticaTheme
 
+//Segunda etapa da atividade: Task manager
+class MainActivity : ComponentActivity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        setContent {
+            Compose_praticaTheme {
+                // A surface container using the 'background' color from the theme
+                Surface(
+                    modifier = Modifier.fillMaxSize(),
+                    color = MaterialTheme.colorScheme.background
+                ) {
+                    Box(
+                        modifier = Modifier.fillMaxSize(),
+                        contentAlignment = Alignment.Center
+                    ) {
+                        Greeting("Compose", "texto1")
+                    }
+                }
+            }
+        }
+    }
+}
 
+@Composable
+fun Greeting(titulo: String, texto1: String, modifier: Modifier = Modifier) {
+
+    Column(modifier = modifier,
+           horizontalAlignment = Alignment.CenterHorizontally) {
+        Text(
+            text = titulo,
+            fontSize = 24.sp,
+            fontWeight = FontWeight.Bold,
+            modifier = Modifier
+                .padding(top = 24.dp, bottom = 8.dp)
+        )
+        Text(
+            text =  texto1,
+            fontSize = 16.sp
+        )
+    }
+}
+
+@Composable
+fun GreetingImage(modifier: Modifier = Modifier) {
+    val image = painterResource(R.drawable.ic_task_completed)
+    Box {
+        Image(
+            painter = image,
+            contentDescription = null,
+            modifier = modifier
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun GreetingPreview() {
+    Compose_praticaTheme {
+        Box(
+            modifier = Modifier.fillMaxSize(),
+            contentAlignment = Alignment.Center
+        ) {
+            Column(horizontalAlignment = Alignment.CenterHorizontally) {
+                GreetingImage()
+                Greeting(
+                    "All tasks completed",
+                    "Nice work!"
+                )
+            }
+        }
+    }
+}
+
+
+/*
 //Primeira etapa da atividade:
 
 class MainActivity : ComponentActivity() {
@@ -90,3 +165,4 @@ fun GreetingPreview() {
         }
     }
 }
+*/
